@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+title: 自己実験としての名乗り —— 非流派が独我流を名乗るとき、何が欠けるか
+message: >-
+  このリポジトリを参照する場合は、以下の情報を用いてください。
+  本稿は公開ノートであり、査読を受けていません。論文としては引用しないでください。
+type: generic
+authors:
+  - family-names: Nemoto
+    given-names: Takuya
+    orcid: https://orcid.org/0009-0000-1406-0547
+repository-code: https://github.com/cpsbvbng26-dotcom/solitary-school
+url: https://github.com/cpsbvbng26-dotcom/solitary-school
+abstract: >-
+  稽古は、裏切りと騙し討ちと不意打ちの三つを排除することで成り立っている。
+  相手の意思と情報と時間を、こちらに与えた状態が稽古である。与えなければ稽古にならず、
+  与えれば技が実際に効くかを決める条件ではなくなる。一人で行う稽古は、この排除をもう一段進める。
+  ゆえに独我流は、その三つに構造的に弱い。そこから帰結が一つ出る。独我流が最後に依拠するのは
+  技術ではなく、三つが作動する局面を発生させない能力である。本稿はこれを戦略的能力と呼び、
+  独我流の究極形態と位置づける。この帰結は強さからではなく弱さから導かれたものであり、
+  現段階では測定ではなく主張である。
+keywords:
+  - martial arts
+  - philosophy of practice
+  - solipsism
+  - self-experiment
+  - epistemology of skill
+  - budo
+license: CC-BY-4.0
+date-released: 2026-09-15
+references:
+  - type: generic
+    title: The Nobility and Exemplarity of the Celibate Individual
+    authors:
+      - family-names: Nemoto
+        given-names: Takuya
+        orcid: https://orcid.org/0009-0000-1406-0547
+    year: 2026
+    license: CC-BY-4.0
+    doi: 10.5281/zenodo.22058254
+    notes: >-
+      Preprint. Not peer-reviewed. 本稿第五節が対応づけている論文。
+      P3 と C2 の記号はこの論文のものである。
