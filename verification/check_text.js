@@ -159,6 +159,24 @@ ok('発展途上であることが書いてある',
    md.indexOf('本稿は発展途上である。先行研究が見つかれば、随時加える。') >= 0
    && md.indexOf('見つかった時点で、本稿の独自性はその分だけ減る') >= 0);
 
+/* **DOI は三箇所と CITATION.cff に出る。**片方だけ直せばずれる。
+ * **番号そのものは Zenodo に出られないので確かめられない。**
+ * 確かめられるのは、書いた番号が全部同じであることだけである。
+ * あわせて、概念 DOI か版 DOI か決まっていないという断りが残っているかも見る。 */
+{
+  const rm = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  const cff = fs.readFileSync(path.join(ROOT, 'CITATION.cff'), 'utf8');
+  const 番号 = [...new Set((rm + cff).match(/10\.5281\/zenodo\.\d+/g) || [])];
+  const 自分 = 番号.filter((x) => x !== '10.5281/zenodo.22058254');
+  ok('書いてある DOI が、どこでも同じ一つである', 自分.length === 1,
+     自分.length ? 自分.join(' / ') : '番号が無い');
+  ok('DOI の等級が、確かめていないと書いてある',
+     rm.indexOf('この番号が概念 DOI か版 DOI かは、**まだ確かめていない。**') >= 0);
+  ok('CITATION.cff が、同じ番号と版を持っている',
+     自分.length === 1 && cff.indexOf('doi: ' + 自分[0]) >= 0
+     && cff.indexOf('version: v1.0.0') >= 0);
+}
+
 /* **散文に数を書いたら、その数を機械で確かめられるようにする**（決めごと 5）。
  * README と CI の仕事の名前が、実際の項目数を名乗っている。
  * **いまの pass に、この項目自身を足したものが総数である。** */

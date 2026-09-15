@@ -1,10 +1,13 @@
 # 自己実験としての名乗り
 
 [![検査](https://github.com/cpsbvbng26-dotcom/solitary-school/actions/workflows/verify.yml/badge.svg)](https://github.com/cpsbvbng26-dotcom/solitary-school/actions/workflows/verify.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22765695.svg)](https://doi.org/10.5281/zenodo.22765695)
 
 **非流派が独我流を名乗るとき、何が欠けるか**
 
 根本卓哉 — 2026年9月 — 公開ノート（査読前）
+
+DOI [`10.5281/zenodo.22765695`](https://doi.org/10.5281/zenodo.22765695)
 
 これは流派ではない。位も称号も持たない。教えない。継承者もいない。名付けたのは、体系ではなく一つの構造である。
 
@@ -208,7 +211,10 @@
 格上げしないこと。これは論文ではない。査読も受けていない。公開ノートである。
 
 > 根本卓哉「自己実験としての名乗り —— 非流派が独我流を名乗るとき、何が欠けるか」（公開ノート、未査読）
+> DOI `10.5281/zenodo.22765695`
 > https://github.com/cpsbvbng26-dotcom/solitary-school
+
+この番号が概念 DOI か版 DOI かは、**まだ確かめていない。**作業環境から Zenodo にも `doi.org` にも出られない。概念 DOI が別にあると分かった時点で、引用にはそちらを使う。
 
 経験の欄を等級として引かないこと。すべて証言であり、段は一つも無い。名乗ってよい理由は、本稿に書いていない。
 
@@ -218,7 +224,7 @@
 node verification/check_text.js
 ```
 
-三つ組が立っていること、帰結の向きが反転していないこと、戦略的能力の内訳と欠けているものの数、位と権威を示す語、他人の来歴、査読前の明記、AI の開示、そして README と index.html がずれていないことを見る。免責と発展途上の断りも見る。20 項目ある。
+三つ組が立っていること、帰結の向きが反転していないこと、戦略的能力の内訳と欠けているものの数、位と権威を示す語、他人の来歴、査読前の明記、AI の開示、そして README と index.html がずれていないことを見る。免責と発展途上の断りも見る。23 項目ある。
 
 ## ライセンス
 
