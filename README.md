@@ -228,7 +228,15 @@ node verification/check_text.js
 
 ## ライセンス
 
-本文は [CC BY 4.0](LICENSE)。
+© 2026 根本卓哉（Takuya Nemoto）— [CC BY 4.0](LICENSE)。出典を示せば自由に利用・改変できる。
+
+| 対象 | ライセンス |
+| --- | --- |
+| 散文 —— `README.md`、`index.html` の本文 | [CC BY 4.0](LICENSE) |
+| 実装 —— `verification/` の検査スクリプト | [MIT](LICENSE-CODE) |
+
+**ライセンスを変えたのではない。**`LICENSE` は CC BY 4.0 しか置いておらず、
+検査スクリプトを CC BY 4.0 だと読む余地があった。書いていなかったものを書いた。
 
 ## 開示
 
