@@ -12,7 +12,25 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const md = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+
+/* **本文は二つある。**README.md（GitHub の面）と index.html（配信の面）。
+ * **片方だけ直せば、二つは静かにずれる。**記法を落として同じ地の文にしてから、
+ * すべての項目を両方に当てる。片方で落ちれば、その項目が落ちる。 */
+const 素 = (t) => t
+  .replace(/<style>[\s\S]*?<\/style>/g, '')
+  .replace(/<[^>]*>/g, '')
+  .replace(/\*\*/g, '')
+  .replace(/\s+/g, '');
+const SRC = {
+  'README.md': 素(fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8')),
+  'index.html': 素(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')),
+};
+/* 両方に入っていなければ、入っていないものとして扱う。 */
+const md = {
+  indexOf: (x) => Object.values(SRC)
+    .every((t) => t.indexOf(素(x)) >= 0) ? 0 : -1,
+  match: (re) => fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8').match(re),
+};
 
 const failures = [];
 let pass = 0;
@@ -109,6 +127,37 @@ ok('AI 支援の開示が残っている',
 ok('実験の設計が、埋まっていないと認めてある',
    md.indexOf('現段階でこれは実験ではない') >= 0
    && md.indexOf('実験の設計だけがある状態である') >= 0);
+
+/* **二つの面が、同じ節を持っていること。**片方に節を足して、もう片方に
+ * 足し忘れると、読む場所によって中身が変わる。 */
+{
+  const 節 = (t) => (t.match(/^#{2,3} (.+)$/gm) || [])
+    .map((x) => x.replace(/^#+ /, '').trim());
+  const 頁 = (t) => (t.match(/<h[23]>([\s\S]*?)<\/h[23]>/g) || [])
+    .map((x) => x.replace(/<[^>]*>/g, '').trim());
+  const a = 節(fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8'));
+  const b = 頁(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8'));
+  /* README には、配信の面が持たない節がある —— 検査の回し方、ライセンス、
+   * 開示、関連。**本文の節だけを突き合わせる。**配信の面に出ている節は、
+   * すべて README にも無ければならない。逆は問わない。 */
+  const 欠け節 = b.filter((x) => a.indexOf(x) < 0);
+  ok('配信の面の節が、すべて README にもある', 欠け節.length === 0,
+     欠け節.length ? ('README に無い: ' + 欠け節.join(' / ')) : (b.length + ' 節'));
+}
+
+/* **散文に数を書いたら、その数を機械で確かめられるようにする**（決めごと 5）。
+ * README と CI の仕事の名前が、実際の項目数を名乗っている。
+ * **いまの pass に、この項目自身を足したものが総数である。** */
+{
+  const total = pass + 1;
+  const rm = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  const yml = fs.readFileSync(path.join(ROOT, '.github', 'workflows', 'verify.yml'), 'utf8');
+  const ずれ = [];
+  if (rm.indexOf(total + ' 項目ある。') < 0) ずれ.push('README.md');
+  if (yml.indexOf('食い違わないか ' + total + ' 項目') < 0) ずれ.push('verify.yml');
+  ok('名乗っている項目数が、実際と合う', ずれ.length === 0,
+     ずれ.length ? ('実際 ' + total + ' / ずれ: ' + ずれ.join(' / ')) : (total + ' 項目'));
+}
 
 console.log('\n' + '-'.repeat(50));
 if (failures.length) {
