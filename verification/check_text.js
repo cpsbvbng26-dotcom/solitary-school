@@ -177,6 +177,38 @@ ok('発展途上であることが書いてある',
      && cff.indexOf('version: v1.0.0') >= 0);
 }
 
+/* **英語版は三つ目の面である。**投稿に出す原稿なので、日本語版と食い違えば
+ * 出した先と記録がずれる。**全文の対照はしない**（訳文なので語が一致しない）。
+ * **要となる約束だけを当てる** —— 三つ組、帰結の向き、戦略的能力、免責、開示、
+ * 位と権威の語を使っていないこと。**どれかが訳の途中で落ちたら落ちる。** */
+{
+  const en = fs.readFileSync(path.join(ROOT, 'preprint', 'solitary-school-en.md'), 'utf8');
+  const 三つ = ['betrayal', 'deception', 'ambush'];
+  const 欠け = 三つ.filter((w) => en.toLowerCase().indexOf(w) < 0);
+  ok('英語版に、' + 漢[三つ.length] + 'つ組が立っている', 欠け.length === 0,
+     欠け.length ? 欠け.join(' / ') : 三つ.join(' / '));
+  ok('英語版の帰結が、こちらに不利な向きのままである',
+     en.indexOf('It cannot be demonstrated in the training hall either.') >= 0
+     && en.indexOf('the same hole is open whether one trains alone or with others') >= 0);
+  ok('英語版が、戦略的能力を主張であって測定ではないと認めてある',
+     en.indexOf('**strategic capability**') >= 0
+     && en.indexOf('strategic capability is a claim, not a measurement') >= 0);
+  ok('英語版に、免責と開示が残っている',
+     en.indexOf('This paper does not take the law lightly. The opposite.') >= 0
+     && en.indexOf('No procedure for causing harm is given') >= 0
+     && en.indexOf('Claude is not an author.') >= 0
+     && en.indexOf('The author determined the argument') >= 0);
+  /* **英語でも位と権威の語を使わない。**日本語だけ締め出しても意味が無い。
+   * **そして決めごと 6 が禁じている自称も、英語のほうに出やすい。** */
+  const 権威en = ['grandmaster', 'soke', 'founder of', 'menkyo', 'Independent Researcher'];
+  const 出たen = 権威en.filter((w) => en.toLowerCase().indexOf(w.toLowerCase()) >= 0);
+  ok('英語版が、位と権威の語を使っていない', 出たen.length === 0,
+     出たen.length ? 出たen.join(' / ') : (権威en.length + ' 語とも無い'));
+  ok('英語版が、査読前であることと段が無いことを書いてある',
+     en.indexOf('Preprint. Not peer-reviewed.') >= 0
+     && en.indexOf('**Not a single dan grade is held.**') >= 0);
+}
+
 /* **散文に数を書いたら、その数を機械で確かめられるようにする**（決めごと 5）。
  * README と CI の仕事の名前が、実際の項目数を名乗っている。
  * **いまの pass に、この項目自身を足したものが総数である。** */
