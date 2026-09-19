@@ -236,7 +236,7 @@ node verification/check_text.js
 | 実装 —— `verification/` の検査スクリプト | [MIT](LICENSE-CODE) |
 
 ライセンスを変えたのではありません。`LICENSE` は CC BY 4.0 しか置いておらず、
-検査スクリプトを CC BY 4.0 だと読む余地がありました。書いていなかったものを書いました。
+検査スクリプトを CC BY 4.0 だと読む余地がありました。書いていなかったものを書きました。
 
 ## 開示
 
