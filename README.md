@@ -214,6 +214,8 @@ DOI [`10.5281/zenodo.22765695`](https://doi.org/10.5281/zenodo.22765695)
 > DOI `10.5281/zenodo.22765695`
 > https://github.com/cpsbvbng26-dotcom/solitary-school
 
+同じ本文が HAL にもあります（[hal-05759721](https://hal.science/hal-05759721)）。引き方は上のままです。
+
 この番号が概念 DOI か版 DOI かは、まだ確かめていません。作業環境から Zenodo にも `doi.org` にも出られません。概念 DOI が別にあると分かった時点で、引用にはそちらを使います。
 
 経験の欄を等級として引かないこと。すべて証言であり、段は一つもありません。名乗ってよい理由は、本稿に書いていません。
