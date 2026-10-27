@@ -246,5 +246,5 @@ node verification/check_text.js
 
 ## 関連
 
-- サイトの同じ主題の頁 —— https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/solitary-school.html
+- サイトの同じ主題の頁 —— https://cpsbvbng26-dotcom.vercel.app/notes/solitary-school.html
 - 訂正の記録 —— https://github.com/cpsbvbng26-dotcom/self-correction
