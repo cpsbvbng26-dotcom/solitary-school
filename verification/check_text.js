@@ -233,7 +233,7 @@ ok('発展途上であることが書いてある',
   const rmRaw = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
   const hRaw = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   const en = fs.readFileSync(path.join(ROOT, 'preprint', 'solitary-school-en.md'), 'utf8');
-  const 新 = '三つのどれかが作動する局面を、著者が回避できなかった一回を示せば、第四節が落ちます。第四節・二が、その一回を測定の全部と定めているからです。';
+  const 新 = '裏切り・騙し討ち・不意打ちのどれかが起きる場面を、著者が避けられなかった例が一つでも示されれば、第四節（独我流にはそうした場面を起こさない力が要る、という主張）は崩れます。';
   const 旧 = '戦略的能力が測定できないままであることを示せば、第四節は主張のまま残ります。';
   ok('覆し方の二番目が、第四節を覆す条件になっている',
      md.indexOf(新) >= 0
