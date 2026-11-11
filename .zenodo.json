@@ -23,7 +23,7 @@
   "related_identifiers": [
     {
       "identifier": "10.5281/zenodo.22058254",
-      "relation": "isSupplementTo",
+      "relation": "references",
       "scheme": "doi"
     }
   ],
