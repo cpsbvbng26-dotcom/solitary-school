@@ -210,6 +210,114 @@ ok('発展途上であることが書いてある',
      && en.indexOf('**Not a single dan grade is held.**') >= 0);
 }
 
+/* **種類と状態の札。**README の題のすぐ下に一行置く。目録（cpsbvbng26-dotcom）と
+ * 食い違えば横断の検査が落とす。ここでは札の形と、引用情報の type を見る。 */
+{
+  const rm = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8').split('\n');
+  const cff = fs.readFileSync(path.join(ROOT, 'CITATION.cff'), 'utf8');
+  ok('README の題のすぐ下に、種類と状態の札がある',
+     /^# /.test(rm[0]) && rm[1] === '' && rm[2] === '種類：エッセイ　状態：凍結',
+     rm[2] || '札が無い');
+  ok('CITATION.cff の type が dataset である', /^type: dataset$/m.test(cff),
+     (/^type: (.*)$/m.exec(cff) || [, '無い'])[1]);
+}
+
+/* **覆し方の二番目は、第四節を覆す条件でなければならない。**
+ * 2026-11-11 までは「測定できないままであることを示せば、第四節は主張のまま残る」と
+ * 書いていた。これは第四節・二を確かめるだけで、何も落とさない。
+ * 第四節・二は「回避できなかった一回が、測定の全部」と定めている。その一回が出れば、
+ * 第四節が落ちる。**この条件が両方の面にあり、前の言い方がどちらの列挙にも無いこと。**
+ * 英語版は凍結してあるので、前の言い方のまま残っていることを README に書いておく。
+ * **英語版が作り直されて言い方が変われば、その断りのほうが嘘になるので落とす。** */
+{
+  const rmRaw = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  const hRaw = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const en = fs.readFileSync(path.join(ROOT, 'preprint', 'solitary-school-en.md'), 'utf8');
+  const 新 = '裏切り・騙し討ち・不意打ちのどれかが起きる場面を、著者が避けられなかった例が一つでも示されれば、第四節（独我流にはそうした場面を起こさない力が要る、という主張）は崩れます。';
+  const 旧 = '戦略的能力が測定できないままであることを示せば、第四節は主張のまま残ります。';
+  ok('覆し方の二番目が、第四節を覆す条件になっている',
+     md.indexOf(新) >= 0
+     && rmRaw.indexOf('2. ' + 新) >= 0 && hRaw.indexOf('<li>' + 新 + '</li>') >= 0
+     && rmRaw.indexOf('2. ' + 旧) < 0 && hRaw.indexOf('<li>' + 旧 + '</li>') < 0
+     && md.indexOf('回避できなかった一回が、測定の全部です。') >= 0);
+  ok('改めたことと、前の言い方が残っている英語版のことが書いてある',
+     md.indexOf('二番目は 2026-11-11 に改めました。') >= 0
+     && rmRaw.indexOf('第八節の二番目は前の言い方のまま残っています。') >= 0
+     && en.indexOf('2. Show that strategic capability remains unmeasurable. Section 4 then remains a claim only.') >= 0);
+}
+
+/* **読む時間は、字数から数える。手で書かない。**update_reading_time.js と同じ関数で
+ * 数え直し、二つの面の印のあいだが一致することを見る。本文を直して書き込み直すのを
+ * 忘れれば落ちる。 */
+{
+  const rt = require('./update_reading_time.js');
+  const hRaw = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const rmRaw = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  const want = rt.sentence(hRaw);
+  const a = rt.between(rmRaw);
+  const b = rt.between(hRaw);
+  ok('読む時間の目安が、字数から数え直したものと合う',
+     a === want && b === want.replace(/`([^`]+)`/g, '<code>$1</code>'),
+     rt.count(hRaw) + ' 字' + (a === want ? '' : ' / README がずれている') + (b !== null && b.indexOf(String(rt.count(hRaw))) >= 0 ? '' : ' / index.html がずれている'));
+}
+
+/* **「この稿が言っていないこと」は、本文が自分で断っていることだけを集める。**
+ * 各行の括弧が指す節が、実際にあること。無い節を根拠に挙げれば落ちる。 */
+{
+  const rmRaw = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  const 節 = (rmRaw.match(/^#{2,3} (.+)$/gm) || []).map((x) => x.replace(/^#+ /, '').trim());
+  const i = rmRaw.indexOf('## この稿が言っていないこと');
+  const 区 = i < 0 ? '' : rmRaw.slice(i, rmRaw.indexOf('\n## ', i + 1));
+  const 行 = 区.split('\n').filter((l) => l.startsWith('- '));
+  const 宛先 = (l) => (/（([^（）]+)）。$/.exec(l) || [, ''])[1];
+  const 在る = (t) => {
+    if (t === '冒頭') return rmRaw.indexOf('これは流派ではありません。') >= 0;
+    const m = /^第(.)節(?:・(.))?$/.exec(t);
+    if (m) return 節.some((h) => h.startsWith(m[2] ? m[1] + '・' + m[2] + ' ' : m[1] + ' '));
+    return 節.indexOf(t) >= 0;
+  };
+  const 無い = 行.filter((l) => !在る(宛先(l)));
+  ok('「この稿が言っていないこと」の各行が、実在する節を指している',
+     行.length > 0 && 無い.length === 0 && md.indexOf('本文が自分で断っていることを、一か所に集めます。') >= 0,
+     無い.length ? 無い.join(' / ') : (行.length + ' 行'));
+}
+
+/* **読んでいない典拠を隠さない。**第六節の四番目が、実際に先行研究の未確認であること。
+ * 論文の側の依存（E6）を指していること。 */
+ok('読んでいない典拠が、第六節と論文の正誤表に結ばれている',
+   md.indexOf('先行研究を確認していない。同じ構造を先に扱った武道論や現象学があるはずだが、当たっていない') >= 0
+   && md.indexOf('同じ構造を先に扱った武道論や現象学に、当たっていません（第六節の四番目）。') >= 0
+   && md.indexOf('の E6 と、同じリポジトリの README の「三篇の骨格」にあります。') >= 0);
+
+/* **外部の反応は、外部評価の記録から写す。**記録の所在へのリンクが両方の面にあること。
+ * 兄弟ディレクトリに cpsbvbng26-dotcom があれば（ECOSYSTEM_ROOT でも指せる）、
+ * 記録の二つの表に本稿の行が本当に無いかを見る。無ければ形だけを見る。 */
+{
+  const SRC = 'https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/docs/external-evaluations.md';
+  const rmRaw = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  const hRaw = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const eco = process.env.ECOSYSTEM_ROOT || path.resolve(ROOT, '..');
+  const f = path.join(eco, 'cpsbvbng26-dotcom', 'docs', 'external-evaluations.md');
+  let 行 = null;
+  if (fs.existsSync(f)) {
+    const t = fs.readFileSync(f, 'utf8');
+    行 = [];
+    for (const h of ['## 受けた評価', '## 出した先']) {
+      const i = t.indexOf(h);
+      if (i < 0) continue;
+      const ls = t.slice(i).split('\n');
+      let k = ls.findIndex((l) => l.startsWith('|'));
+      for (; k >= 0 && k < ls.length && ls[k].startsWith('|'); k++) 行.push(ls[k]);
+    }
+    行 = 行.filter((l) => /自己実験としての名乗り|独我流|solitary-school/.test(l));
+  }
+  ok('外部の反応が、外部評価の記録と合う',
+     rmRaw.indexOf('](' + SRC + ')') >= 0 && hRaw.indexOf('href="' + SRC + '"') >= 0
+     && md.indexOf('その記録の「受けた評価」と「出した先」の表に、本稿を対象にした行はありません。') >= 0
+     && (行 === null || 行.length === 0),
+     行 === null ? '兄弟に記録が無いので、所在と文だけを見た' : '記録の行 ' + 行.length);
+}
+
 /* **散文に数を書いたら、その数を機械で確かめられるようにする**（決めごと 5）。
  * README と CI の仕事の名前と CONTRIBUTING.md が、実際の項目数を名乗っている。
  * CONTRIBUTING.md は一度、23 項目のまま取り残されていた。
