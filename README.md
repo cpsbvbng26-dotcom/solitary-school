@@ -282,6 +282,10 @@ node verification/check_text.js
 
 言語モデル（Claude、Anthropic）を用いて書いています。論旨の決定と、経験の記述は著者が行いました。git の履歴に `Co-Authored-By` が並んでいます。
 
+| 道具 | 使ったところ | 確かめた人 |
+| --- | --- | --- |
+| Claude（Anthropic） | 本文の執筆、README と index.html、検査のコード | 著者（論旨の決定と経験の記述は著者のもの）と、`verification/check_text.js` |
+
 ## 関連
 
 - サイトの同じ主題の頁 —— https://cpsbvbng26-dotcom.vercel.app/notes/solitary-school.html
