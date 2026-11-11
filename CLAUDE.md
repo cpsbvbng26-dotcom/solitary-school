@@ -140,8 +140,12 @@
 ## このリポジトリ
 
 ```
-node verification/check_text.js        # 29 項目
+node verification/update_reading_time.js  # 読む時間の目安を書き込む
+node verification/check_text.js        # 37 項目
 ```
+
+**読む時間の目安（`<!-- 読む時間:ここから -->` から `<!-- 読む時間:ここまで -->` まで）は生成物である。**
+手で編集しない。本文を直したら `update_reading_time.js` を走らせる。数がずれれば `check_text.js` が落とす。
 
 `README.md` と `index.html` は同じ中身の二つの面である。**片方だけ直すと落ちる。**
 検査は両方から記号と飾りを剥がしてから突き合わせている。
