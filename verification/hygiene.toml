@@ -1,0 +1,19 @@
+# check_hygiene.py が読む。このリポジトリだけの違いをここに置く。
+
+# 外部のパッケージ。無い。
+packages = []
+
+# 書き込みの権限。「ワークフローのファイル名:権限」。無い。
+writes = []
+
+# 要旨。.zenodo.json の description に、日本語と英語を続けて置いている。
+[abstract]
+ja = [".zenodo.json", "description"]
+en = [".zenodo.json", "description"]
+
+# 散文の数。ほかの検査が拾っていなかったもの。
+[[copies]]
+what = "check_text.js の項目数"
+# CI の題の数は check_text.js が実際と突き合わせている。CLAUDE.md はその写し。
+from = [".github/workflows/verify.yml", '本文が自分と食い違わないか (\d+) 項目']
+to = [["CLAUDE.md", 'check_text\.js\s+# (\d+) 項目']]
