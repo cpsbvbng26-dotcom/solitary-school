@@ -211,7 +211,8 @@ ok('発展途上であることが書いてある',
 }
 
 /* **散文に数を書いたら、その数を機械で確かめられるようにする**（決めごと 5）。
- * README と CI の仕事の名前が、実際の項目数を名乗っている。
+ * README と CI の仕事の名前と CONTRIBUTING.md が、実際の項目数を名乗っている。
+ * CONTRIBUTING.md は一度、23 項目のまま取り残されていた。
  * **いまの pass に、この項目自身を足したものが総数である。** */
 {
   const total = pass + 1;
@@ -220,6 +221,8 @@ ok('発展途上であることが書いてある',
   const ずれ = [];
   if (rm.indexOf(total + ' 項目あります。') < 0) ずれ.push('README.md');
   if (yml.indexOf('食い違わないか ' + total + ' 項目') < 0) ずれ.push('verify.yml');
+  const co = fs.readFileSync(path.join(ROOT, 'CONTRIBUTING.md'), 'utf8');
+  if (co.indexOf('# ' + total + ' 項目') < 0) ずれ.push('CONTRIBUTING.md');
   ok('名乗っている項目数が、実際と合う', ずれ.length === 0,
      ずれ.length ? ('実際 ' + total + ' / ずれ: ' + ずれ.join(' / ')) : (total + ' 項目'));
 }
