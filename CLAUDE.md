@@ -148,7 +148,7 @@
 
 ```
 node verification/update_reading_time.js  # 読む時間の目安を書き込む
-node verification/check_text.js        # 37 項目
+node verification/check_text.js        # 38 項目
 python3 verification/check_hygiene.py   # 依存・権限・固定・秘密・要旨・散文の数（設定は verification/hygiene.toml）
 ```
 
