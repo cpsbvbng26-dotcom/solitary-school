@@ -293,4 +293,4 @@ node verification/check_text.js
 - サイトの同じ主題の頁 —— https://cpsbvbng26-dotcom.vercel.app/notes/solitary-school.html
 - 訂正の記録 —— https://github.com/cpsbvbng26-dotcom/self-correction
 
-責任の範囲は、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)に定めています。
+責任は、法令の定めるとおりです。説明は[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)にあります。
