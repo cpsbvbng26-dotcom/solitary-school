@@ -28,7 +28,7 @@ Issue も pull request も歓迎する。登録は要らない。
 ## 変更を出す
 
 ```
-node verification/check_text.js    # 37 項目
+node verification/check_text.js    # 38 項目
 ```
 
 通ってから出す。依存パッケージは要らない。
