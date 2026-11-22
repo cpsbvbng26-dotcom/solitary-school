@@ -169,7 +169,14 @@
 node verification/update_reading_time.js  # 読む時間の目安を書き込む
 node verification/check_text.js        # 38 項目
 python3 verification/check_hygiene.py   # 依存・権限・固定・秘密・要旨・散文の数（設定は verification/hygiene.toml）
+node verification/check_design.js      # デザインの頁の事実と条文（壊して確かめる仕組みを中に持つ）
 ```
+
+`design-legal.html`（デザインに関する法的な扱い）は手で置く頁である。生成物ではない。
+見た目の部品（`index.html`・`style.css`・この頁・書体の並び・色）を変えたら、同じ PR でこの頁と `check_design.js` を直す。
+頁が引く条文は `verification/statutes-design.json` にある。nusquama の `verification/statutes-texts.json`（コミット 85dd680）からの写しで、手で直さない。
+`check_design.js` が来歴のコミットを読むので、CI の取り出しは `fetch-depth: 0` にしてある。
+このリポジトリは GitHub Pages で配っていない（2026-11-22 に GitHub の API で `has_pages` が false）。頁はリポジトリのファイルとして置く。
 
 **読む時間の目安（`<!-- 読む時間:ここから -->` から `<!-- 読む時間:ここまで -->` まで）は生成物である。**
 手で編集しない。本文を直したら `update_reading_time.js` を走らせる。数がずれれば `check_text.js` が落とす。

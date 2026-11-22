@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>デザインに関する法的な扱い | 根本卓哉</title>
+<meta name="description" content="「自己実験としての名乗り」の頁とこの頁の見た目について、部品ごとに、誰が作ったか、どこから来たか、権利と許諾、どの法令の条に関わるかを事実で書きます。">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="main" tabindex="-1">
+<div class="wrap">
+
+<h1>デザインに関する法的な扱い</h1>
+<p class="lede"><a href="index.html">自己実験としての名乗り</a>の頁（<code>index.html</code>）と、この頁の見た目について書きます。</p>
+
+<h2>この頁について</h2>
+
+<p>扱うのは、二つの頁の見た目の部品です。書体、ロゴ・印・ファビコン・共有用の画像、図、配色、配置、外から読む素材を扱います。</p>
+
+<p>部品ごとに、誰が作ったか、どこから来たか、権利と許諾がどうなっているか、どの法令の条にどう関わるかを書きます。</p>
+
+<p>書いてあるのは運営者の側の理解です。法的な助言ではありません。弁護士の確認は受けていません。</p>
+
+<p>条文は、運営者の別のリポジトリの verification/statutes-texts.json（コミット 85dd680、e-Gov 法令 API から 2026-11-22 に取り寄せ）の写しのとおりに引きます。引く条だけを、このリポジトリの <code>verification/statutes-design.json</code> に一字一句そのまま写しました。<code>verification/check_design.js</code> が、写しの文と sha256 と、この頁の引用を突き合わせます。</p>
+
+<p>このリポジトリは、GitHub Pages で配っていません。2026-11-22 に GitHub の API で読んだリポジトリの <code>has_pages</code> は false でした。リポジトリの中にも、頁を配るワークフローと <code>CNAME</code> のファイルはありません。二つの頁は、リポジトリのファイルとして置いてあります。</p>
+
+<p>この頁の事実は、2026-11-22 に確かめたものです。</p>
+
+<h2>部品の一覧</h2>
+
+<p>見た目に関わるファイル（拡張子が html・css・svg・png・jpg・jpeg・gif・webp・avif・ico・woff・woff2・ttf・otf のもの）は、このリポジトリに三つあります。表のファイルの欄は、その三つと過不足なく一致します。<code>check_design.js</code> が <code>git ls-files</code> と突き合わせます。</p>
+
+<div class="tw">
+<table>
+<tr><th>何か</th><th>ファイル</th><th>作り方と出所</th><th>権利と許諾</th><th>確かめ方</th></tr>
+<tr data-part="page" data-file="index.html"><td>本文と配置</td><td><code>index.html</code></td><td>このリポジトリで手で書いた HTML です。2026-09-15 のコミット f883ee2 で足しました。読む時間の目安の一文だけは、<code>verification/update_reading_time.js</code> が書き込みます。</td><td>本文は CC BY 4.0（<code>LICENSE</code>）です。README のライセンスの表が、<code>index.html</code> の本文を CC BY 4.0 に挙げています。</td><td><code>check_text.js</code> が README と突き合わせます。<code>check_design.js</code> が、この表とファイルを突き合わせます。</td></tr>
+<tr data-part="this" data-file="design-legal.html"><td>この頁</td><td><code>design-legal.html</code></td><td>このリポジトリで手で書いた HTML です。2026-11-22 に足しました。</td><td>本文は CC BY 4.0（<code>LICENSE</code>）です。README のライセンスの表に挙げています。</td><td><code>check_design.js</code> が、条文の引用と、頁に書いた事実を確かめます。</td></tr>
+<tr data-part="style" data-file="style.css"><td>配色と配置の定め</td><td><code>style.css</code></td><td>このリポジトリで手で書いた CSS です。2026-09-15 のコミット c4d1e37 で、<code>index.html</code> の中にあった style を別のファイルに出しました。</td><td>根の <code>LICENSE</code> は CC BY 4.0 です。README のライセンスの表は、<code>style.css</code> を名指ししていません。この頁は、どの許諾も変えません。</td><td><code>check_design.js</code> が、色の比、書体の並び、動きの無いことを <code>style.css</code> から数え直します。</td></tr>
+<tr data-part="font" data-file=""><td>書体</td><td>なし（配っていません）</td><td><code>style.css</code> の font-family が、閲覧する端末に入っている書体の名を並べるだけです。本文は <code>'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, serif</code>、コードは <code>ui-monospace, Menlo, monospace</code> です。<code>@font-face</code> はありません。</td><td>書体のファイルを配っていません。どの書体で描かれるかは、閲覧する端末に入っている書体で決まります。</td><td><code>check_design.js</code> が、font-family の並びと、<code>@font-face</code> と書体のファイルが無いことを見ます。</td></tr>
+<tr data-part="logo" data-file=""><td>ロゴ・印・ファビコン</td><td>なし</td><td>ありません。二つの頁は、icon の link を持ちません。</td><td>該当しません。</td><td><code>check_design.js</code> が、画像のファイルと icon の link が無いことを見ます。</td></tr>
+<tr data-part="share" data-file=""><td>共有用の画像</td><td>なし</td><td>ありません。二つの頁は、og:image や twitter:image の meta を持ちません。</td><td>該当しません。</td><td><code>check_design.js</code> が、その meta が無いことを見ます。</td></tr>
+<tr data-part="figure" data-file=""><td>図・写真</td><td>なし</td><td>ありません。表は HTML の table で組んでいます。</td><td>該当しません。</td><td><code>check_design.js</code> が、img・svg・picture・video・canvas の要素が無いことを見ます。</td></tr>
+<tr data-part="external" data-file=""><td>外から読む素材</td><td>なし</td><td>ありません。二つの頁の CSP は <code>default-src 'none'</code> で、自分の所から <code>style.css</code> だけを読みます（<code>style-src 'self'</code>）。</td><td>該当しません。</td><td><code>check_design.js</code> が、CSP と、外を指す src と stylesheet が無いことを見ます。</td></tr>
+<tr data-part="badge" data-file=""><td>README の面のバッジ</td><td>なし（このリポジトリはファイルを持ちません）</td><td><code>README.md</code> の上の二つのバッジは、GitHub と Zenodo のサーバーが描く画像です。<code>index.html</code> とこの頁は読みません。</td><td>このリポジトリの <code>LICENSE</code> と <code>LICENSE-CODE</code> は、この画像に掛かりません。</td><td><code>check_design.js</code> が、バッジの画像の所在が github.com と zenodo.org であることを見ます。</td></tr>
+</table>
+</div>
+
+<h2>著作権</h2>
+
+<p>著作権法第2条第1項第1号は、著作物を次のように定めています（写しの全文）。</p>
+
+<blockquote class="note" data-statute="著作権法 第2条第1項第1号" data-cut="whole">
+<p>一 著作物 思想又は感情を創作的に表現したものであつて、文芸、学術、美術又は音楽の範囲に属するものをいう。</p>
+</blockquote>
+
+<p>著作権法第10条第1項第4号は、著作物の例として次のものを挙げています（写しの全文）。</p>
+
+<blockquote class="note" data-statute="著作権法 第10条第1項第4号" data-cut="whole">
+<p>四 絵画、版画、彫刻その他の美術の著作物</p>
+</blockquote>
+
+<p>二つの頁の見た目は、一段の組み、罫線、端末の明朝体、落ち着いた色の組み合わせでできています。これが「思想又は感情を創作的に表現したもの」に当たり、美術の著作物に入るかは、条文の文からは決まりません。運営者は、この見た目を美術の著作物だと主張しません。</p>
+
+<p>許諾は、このリポジトリの <code>LICENSE</code> と <code>LICENSE-CODE</code> のとおりです。本文は CC BY 4.0、検査のスクリプトは MIT です。この頁は、どの許諾も変えません。</p>
+
+<p>著作権法第19条と第20条は、著作者の人格の権利を定めています。第19条は、第1項の初めの文を写しから切り出しました。</p>
+
+<blockquote class="note" data-statute="著作権法 第19条" data-cut="excerpt">
+<p>著作者は、その著作物の原作品に、又はその著作物の公衆への提供若しくは提示に際し、その実名若しくは変名を著作者名として表示し、又は著作者名を表示しないこととする権利を有する。</p>
+</blockquote>
+
+<p>著作権法第20条は、第1項を写しから切り出しました。</p>
+
+<blockquote class="note" data-statute="著作権法 第20条" data-cut="excerpt">
+<p>著作者は、その著作物及びその題号の同一性を保持する権利を有し、その意に反してこれらの変更、切除その他の改変を受けないものとする。</p>
+</blockquote>
+
+<p>根の <code>LICENSE</code>（CC BY 4.0）の Section 2 の b の 1 は、次のとおりです。</p>
+
+<blockquote class="note" data-license="LICENSE">
+<p>Moral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights; however, to the extent possible, the Licensor waives and/or agrees not to assert any such rights held by the Licensor to the limited extent necessary to allow You to exercise the Licensed Rights, but not otherwise.</p>
+</blockquote>
+
+<p>この文の要旨は、人格の権利は許諾の対象にならず、許諾者は、許諾した権利を使えるようにするのに要る限りで、その権利を行使しない、というものです。訳ではありません。</p>
+
+<p>他人の素材は使っていません。画像、書体のファイル、ほかのサイトの CSS は、このリポジトリにありません。著作権法第21条は、複製の権利を著作者のものとしています（写しの全文）。</p>
+
+<blockquote class="note" data-statute="著作権法 第21条" data-cut="whole">
+<p>（複製権） 第二十一条 著作者は、その著作物を複製する権利を専有する。</p>
+</blockquote>
+
+<p>他人の著作物を複製して置いていないので、他人の著作物の許諾の文と条件に従うべきものはありません。</p>
+
+<h2>商標・意匠・不正競争</h2>
+
+<p>このリポジトリの記録には、頁の題、名、見た目を、商標や意匠として出願した記録も、登録した記録もありません。特許庁の記録で登録の有無を確かめてはいません。</p>
+
+<p>商標法第25条は、商標権の効力を次のように定めています（写しの全文）。</p>
+
+<blockquote class="note" data-statute="商標法 第25条" data-cut="whole">
+<p>（商標権の効力） 第二十五条 商標権者は、指定商品又は指定役務について登録商標の使用をする権利を専有する。 ただし、その商標権について専用使用権を設定したときは、専用使用権者がその登録商標の使用をする権利を専有する範囲については、この限りでない。</p>
+</blockquote>
+
+<p>二つの頁は、何も売りません。教えることもしません。<code>index.html</code> の経験の表に出る武道の名は、稽古の事実を述べる文に出るもので、商品や役務の表示として使っていません。他人の登録商標と照らし合わせては確かめていません。</p>
+
+<p>意匠法第2条は、第1項を写しから切り出しました。</p>
+
+<blockquote class="note" data-statute="意匠法 第2条" data-cut="excerpt">
+<p>この法律で「意匠」とは、物品（物品の部分を含む。以下同じ。）の形状、模様若しくは色彩若しくはこれらの結合（以下「形状等」という。）、建築物（建築物の部分を含む。以下同じ。）の形状等又は画像（機器の操作の用に供されるもの又は機器がその機能を発揮した結果として表示されるものに限り、画像の部分を含む。次条第二項、第三十七条第二項、第三十八条第七号及び第八号、第四十四条の三第二項第六号並びに第五十五条第二項第六号を除き、以下同じ。）であつて、視覚を通じて美感を起こさせるものをいう。</p>
+</blockquote>
+
+<p>意匠法第2条は、画像を、機器の操作の用に供されるものか、機器がその機能を発揮した結果として表示されるものに限っています。二つの頁の画面がこの画像に当たるかは、条文の文からは決まりません。</p>
+
+<p>意匠法第23条は、意匠権の効力を次のように定めています（写しの全文）。</p>
+
+<blockquote class="note" data-statute="意匠法 第23条" data-cut="whole">
+<p>（意匠権の効力） 第二十三条 意匠権者は、業として登録意匠及びこれに類似する意匠の実施をする権利を専有する。 ただし、その意匠権について専用実施権を設定したときは、専用実施権者がその登録意匠及びこれに類似する意匠の実施をする権利を専有する範囲については、この限りでない。</p>
+</blockquote>
+
+<p>二つの頁は、見た目を使って何かを売ることも貸すこともしません。他人の登録意匠と照らし合わせては確かめていません。</p>
+
+<p>不正競争防止法第2条第1項第1号と第2号は、次のとおりです（写しの全文）。</p>
+
+<blockquote class="note" data-statute="不正競争防止法 第2条第1項第1号・第2号" data-cut="whole">
+<p>一 他人の商品等表示（人の業務に係る氏名、商号、商標、標章、商品の容器若しくは包装その他の商品又は営業を表示するものをいう。以下同じ。）として需要者の間に広く認識されているものと同一若しくは類似の商品等表示を使用し、又はその商品等表示を使用した商品を譲渡し、引き渡し、譲渡若しくは引渡しのために展示し、輸出し、輸入し、若しくは電気通信回線を通じて提供して、他人の商品又は営業と混同を生じさせる行為</p>
+<p>二 自己の商品等表示として他人の著名な商品等表示と同一若しくは類似のものを使用し、又はその商品等表示を使用した商品を譲渡し、引き渡し、譲渡若しくは引渡しのために展示し、輸出し、輸入し、若しくは電気通信回線を通じて提供する行為</p>
+</blockquote>
+
+<p>二つの頁は、ロゴも標章も持ちません（部品の一覧）。他人の商品等表示を、自分の表示として使っていません。</p>
+
+<p>不正競争防止法第2条第1項第3号は、次のとおりです（写しの全文）。</p>
+
+<blockquote class="note" data-statute="不正競争防止法 第2条第1項第3号" data-cut="whole">
+<p>三 他人の商品の形態（当該商品の機能を確保するために不可欠な形態を除く。）を模倣した商品を譲渡し、貸し渡し、譲渡若しくは貸渡しのために展示し、輸出し、輸入し、又は電気通信回線を通じて提供する行為</p>
+</blockquote>
+
+<p>二つの頁は、商品を譲渡も提供もしません。<code>style.css</code> はこのリポジトリで書いたもので、ほかのサイトの CSS を写したという記録はありません。似た見た目のサイトがほかにあるかは、確かめていません。</p>
+
+<h2>見やすさ</h2>
+
+<p>障害を理由とする差別の解消の推進に関する法律（以下、障害者差別解消法）の第2条から、第1号と第2号を写しから切り出しました。</p>
+
+<blockquote class="note" data-statute="障害者差別解消法 第2条" data-cut="excerpt">
+<p>一 障害者 身体障害、知的障害、精神障害（発達障害を含む。）その他の心身の機能の障害（以下「障害」と総称する。）がある者であって、障害及び社会的障壁により継続的に日常生活又は社会生活に相当な制限を受ける状態にあるものをいう。</p>
+<p>二 社会的障壁 障害がある者にとって日常生活又は社会生活を営む上で障壁となるような社会における事物、制度、慣行、観念その他一切のものをいう。</p>
+</blockquote>
+
+<p>障害者差別解消法第2条から、第7号も写しから切り出しました。</p>
+
+<blockquote class="note" data-statute="障害者差別解消法 第2条" data-cut="excerpt">
+<p>七 事業者 商業その他の事業を行う者（国、独立行政法人等、地方公共団体及び地方独立行政法人を除く。）をいう。</p>
+</blockquote>
+
+<p>障害者差別解消法第8条は、次のとおりです（写しの全文）。</p>
+
+<blockquote class="note" data-statute="障害者差別解消法 第8条" data-cut="whole">
+<p>（事業者における障害を理由とする差別の禁止） 第八条 事業者は、その事業を行うに当たり、障害を理由として障害者でない者と不当な差別的取扱いをすることにより、障害者の権利利益を侵害してはならない。 ２ 事業者は、その事業を行うに当たり、障害者から現に社会的障壁の除去を必要としている旨の意思の表明があった場合において、その実施に伴う負担が過重でないときは、障害者の権利利益を侵害することとならないよう、当該障害者の性別、年齢及び障害の状態に応じて、社会的障壁の除去の実施について必要かつ合理的な配慮をしなければならない。</p>
+</blockquote>
+
+<p>運営者が障害者差別解消法第2条第7号の「事業者」に当たるかは、条文の文からは決まりません。この頁は、それを決めつけません。</p>
+
+<p>そのうえで、二つの頁がしていることのうち、<code>check_design.js</code> が確かめている事柄だけを書きます。</p>
+
+<p>文字の色と地の色の比は、WCAG 2 の相対輝度の式で <code>style.css</code> の色から数え、小数第三位で切り捨てました。<code>style.css</code> が文字に使う色は四つ、地に使う色は二つです。どの組み合わせも、比は 4.5 を下回りません。いちばん低いのは <code>--faint</code> と <code>--bg</code> の組で、4.54 です。</p>
+
+<div class="tw">
+<table>
+<tr><th>文字の色</th><th>地の色</th><th>比</th></tr>
+<tr data-contrast="text bg"><td><code>--text</code>（#17171a）</td><td><code>--bg</code>（#faf9f7）</td><td>17.00</td></tr>
+<tr data-contrast="text card"><td><code>--text</code>（#17171a）</td><td><code>--card</code>（#ffffff）</td><td>17.88</td></tr>
+<tr data-contrast="muted bg"><td><code>--muted</code>（#63636b）</td><td><code>--bg</code>（#faf9f7）</td><td>5.65</td></tr>
+<tr data-contrast="muted card"><td><code>--muted</code>（#63636b）</td><td><code>--card</code>（#ffffff）</td><td>5.95</td></tr>
+<tr data-contrast="faint bg"><td><code>--faint</code>（#727278）</td><td><code>--bg</code>（#faf9f7）</td><td>4.54</td></tr>
+<tr data-contrast="faint card"><td><code>--faint</code>（#727278）</td><td><code>--card</code>（#ffffff）</td><td>4.77</td></tr>
+<tr data-contrast="accent bg"><td><code>--accent</code>（#8a6a3d）</td><td><code>--bg</code>（#faf9f7）</td><td>4.74</td></tr>
+<tr data-contrast="accent card"><td><code>--accent</code>（#8a6a3d）</td><td><code>--card</code>（#ffffff）</td><td>4.98</td></tr>
+</table>
+</div>
+
+<ul>
+<li>色だけに頼りません。<code>style.css</code> は、リンクの下線を消す定め（text-decoration）を持ちません。太字は、字の太さ（font-weight: 600）で示します。</li>
+<li>動くものがありません。<code>style.css</code> に animation・transition・@keyframes はありません。CSP の <code>script-src 'none'</code> で、スクリプトも動きません。動くものが無いので、動きを減らす設定（prefers-reduced-motion）に応じる定めも置いていません。</li>
+<li>代替文の要る要素がありません。img・svg・picture・video・canvas の要素はありません。</li>
+<li>操作できるのはリンクだけです。正の値の tabindex を付けていません。フォーカスの輪郭を消す定め（outline: none や outline: 0）はありません。</li>
+<li>拡大を止める定めはありません。viewport の meta に maximum-scale と user-scalable を置いていません。</li>
+<li>二つの頁の html の lang は ja です。</li>
+<li><code>style.css</code> は暗い配色（<code>:root[data-theme="dark"]</code>）も定めています。どの頁も data-theme を付けず、スクリプトも動かないので、その配色は使われません。上の表にも入れていません。</li>
+</ul>
+
+<p>読み上げのソフトでの聞こえ方、実際の端末での拡大の表示、色覚の違いによる見え方は、確かめていません。</p>
+
+<h2>人と団体</h2>
+
+<p>二つの頁に、実在の人の肖像はありません。実在の団体のロゴや印もありません。画像の要素が無いためです。名は文字で書くだけです。</p>
+
+<h2>変わったとき</h2>
+
+<p>部品を変えたときは、この頁と <code>verification/check_design.js</code> を同じ PR で直します。部品とは、<code>index.html</code>、<code>style.css</code>、この頁、書体の並び、色のことです。この頁の表と実際のファイル・色・書体がずれれば、<code>check_design.js</code> が落ちます。</p>
+
+<footer>
+<p><a href="index.html">自己実験としての名乗り</a></p>
+<p>根本卓哉 · <a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">ORCID 0009-0000-1406-0547</a> ·
+<a href="https://github.com/cpsbvbng26-dotcom/solitary-school" target="_blank" rel="noopener">github.com/cpsbvbng26-dotcom/solitary-school</a></p>
+<p>この頁は法的な助言ではありません。弁護士の確認は受けていません。言語モデル（Claude、Anthropic）を用いて書いています。</p>
+</footer>
+
+</div>
+</main>
+</body>
+</html>

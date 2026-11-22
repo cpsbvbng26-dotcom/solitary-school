@@ -29,6 +29,7 @@ Issue も pull request も歓迎する。登録は要らない。
 
 ```
 node verification/check_text.js    # 38 項目
+node verification/check_design.js  # デザインの頁の事実と条文
 ```
 
 通ってから出す。依存パッケージは要らない。

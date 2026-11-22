@@ -262,11 +262,14 @@ HAL にも同じ本文を置いていましたが、2026-09-26 に削除しま�
 ```
 node verification/update_reading_time.js   # 読む時間の目安を書き込む
 node verification/check_text.js
+node verification/check_design.js
 ```
 
 読む時間の目安は、本文の字数から `update_reading_time.js` が書き込みます。手では書きません。本文を直したら、書き込み直してから検査を回します。
 
 三つ組が立っていること、帰結の向きが反転していないこと、戦略的能力の内訳と欠けているものの数、位と権威を示す語、他人の来歴、査読前の明記、言語モデルの開示、そして README と index.html がずれていないことを見ます。免責と発展途上の断りも見ます。種類と状態の札、覆し方の二番目、読む時間の目安、「言っていないこと」が指す節、読んでいない典拠、外部の反応も見ます。38 項目あります。
+
+`check_design.js` は、[デザインに関する法的な扱い](design-legal.html)の頁が書いた事実と、その頁が引いた条文を確かめます。入力を一つずつ壊して、狙った項目が落ちることも確かめます。
 
 ## ライセンス
 
@@ -274,7 +277,7 @@ node verification/check_text.js
 
 | 対象 | ライセンス |
 | --- | --- |
-| 散文 —— `README.md`、`index.html` の本文 | [CC BY 4.0](LICENSE) |
+| 散文 —— `README.md`、`index.html` と `design-legal.html` の本文 | [CC BY 4.0](LICENSE) |
 | 実装 —— `verification/` の検査スクリプト | [MIT](LICENSE-CODE) |
 
 ライセンスを変えたのではありません。`LICENSE` には CC BY 4.0 しか置いておらず、
@@ -294,6 +297,7 @@ node verification/check_text.js
 
 - サイトの同じ主題の頁 —— https://cpsbvbng26-dotcom.vercel.app/notes/solitary-school.html
 - 訂正の記録 —— https://github.com/cpsbvbng26-dotcom/self-correction
+- デザインに関する法的な扱い —— [design-legal.html](design-legal.html)
 
 ## 運営理念・声明
 
